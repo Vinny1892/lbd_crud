@@ -1,0 +1,33 @@
+version: "3"
+services:
+    backend:
+        build: 
+            context: .
+            dockerfile: docker/dockerfile.dev
+        volumes:
+            - .:/var/www/html
+            - /var/www/html/vendor
+        ports:
+            - 8080:80
+        networks:
+            network-feedbackevent:
+                ipv4_address: 172.70.0.8
+    postgres:
+        image: postgres
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: "app"
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+
+        networks:
+            network-feedbackevent:
+                ipv4_address: 172.70.0.15
+networks:
+    network-feedbackevent:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.70.0.0/24

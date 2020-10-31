@@ -1,0 +1,29 @@
+FROM php:7.4-cli
+
+RUN apt update && apt install  libzip-dev curl gcc make autoconf libc-dev pkg-config git libcurl4 libcurl4-openssl-dev libpq-dev   postgresql-client-11 -y
+
+RUN docker-php-ext-install  zip
+RUN docker-php-ext-enable  zip
+RUN pecl install xdebug
+RUN pecl install igbinary
+RUN pecl install redis
+RUN docker-php-ext-enable igbinary
+RUN docker-php-ext-enable redis
+RUN docker-php-ext-install pgsql
+RUN docker-php-ext-enable pgsql
+RUN docker-php-ext-install pdo_pgsql
+RUN docker-php-ext-enable pdo_pgsql
+
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
+
+
+WORKDIR /var/www/html
+COPY . .
+
+
+RUN composer install
+
+RUN chmod +x docker/wait-for-it.sh
+
+CMD ["docker/wait-for-it.sh", "postgres", "postgres" ,"postgres"]
