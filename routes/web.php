@@ -1,18 +1,23 @@
 <?php
 
+use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SetorController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get(
+    '/', function () {
+        return view('welcome');
+    }
+);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get("/setor" , [SetorController::class,'index'])->name('setor.index');
+Route::get("/setor/create" , [SetorController::class,'create'])->name('setor.create');
+Route::post('/setor' , [SetorController::class,'store'])->name('setor.post');
+
+// Departamento
+Route::get('/departamento' , [DepartamentoController::class,'index'])->name('departamento.index');
+Route::get('/departamento/create', [DepartamentoController::class,'create']);
+Route::post('/departamento', [DepartamentoController::class,'store'])->name("departamento.post");
+
+
