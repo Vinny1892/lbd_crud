@@ -8,9 +8,25 @@
     <title>Departamento</title>
 </head>
     <body>
-    <form method="POST" action="{{ route('departamento.post') }}">
-        {{ csrf_field() }}
-        <input type="text" name="nome"  placeholder="Digite o nome do departamento" value="{{old('nome')}}">
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div> <p>{{ $error }}</p> </div>
+        @endforeach
+    @endif
+        @if(isset($departamento))
+            <form method="POST" action="{{ route('departamento.update', ["departamento" => $departamento->id]) }}" >
+             @method("PUT")
+        @else
+             <form method="POST" action="{{ route('departamento.store') }}">
+        @endif
+        @csrf
+        <input type="text" name="nome"  placeholder="Digite o nome do departamento"
+               value="{{ $departamento ? $departamento->nome : old('nome') }}">
         <button type="submit" >Submit</button>
     </form>
     </body>

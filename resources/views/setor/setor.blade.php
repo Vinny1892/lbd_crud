@@ -29,6 +29,9 @@
         <tr>
             <td>{{ $setor->nome }}</td>
             <td>{{ $setor->departamento->nome }}</td>
+            <td><form action="{{ route('setor.destroy' , ["setor" => $setor->id])  }}" method="POST">
+                     @csrf @method('DELETE')<button>Apagar</button></form>
+                <a href="{{ route('setor.edit',[ "setor" => $setor->id]) }}" >Editar</a></td>
         </tr>
     @endforeach
     </tbody>

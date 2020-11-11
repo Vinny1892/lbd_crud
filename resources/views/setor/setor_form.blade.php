@@ -9,9 +9,19 @@
     <title>Setor</title>
 </head>
 <body>
-<form method="POST" action="{{ route('setor.post') }}">
-    {{ csrf_field() }}
-    <input type="text" name="nome"  placeholder="Digite o nome do setor" value="{{old('nome')}}">
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div> <p>{{ $error }}</p> </div>
+        @endforeach
+    @endif
+    @if(isset($setor))
+        <form method="POST" action="{{ route('setor.update' , ["setor" => $setor->id]) }}">
+        @method("PUT")
+    @else
+        <form method="POST" action="{{ route('setor.store') }}">
+    @endif
+    @csrf
+    <input type="text" name="nome"  placeholder="Digite o nome do setor" value="{{ $setor  ? $setor->nome : old('nome') }}">
     <select name="departamento">
         @foreach($departamentos as $departamento)
             <option value="{{$departamento->id}}">{{$departamento->nome}}</option>

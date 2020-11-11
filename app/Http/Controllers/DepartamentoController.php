@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departamento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DepartamentoController extends Controller
 {
@@ -25,7 +26,8 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        return response()->view('departamento.departamento_form');
+        $departamento = null;
+        return response()->view('departamento.departamento_form',compact('departamento'));
     }
 
     /**
@@ -36,6 +38,8 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
+        $validator =  Validator::make($request->all(),["nome" => ["required"]],["required" => "Nome Obrigatorio"]);
+        if($validator->fails()) { return  response()->redirectToRoute('departamento.create')->withErrors($validator);}
         Departamento::create($request->all());
         return response()->redirectToRoute('departamento.index');
     }
@@ -59,7 +63,7 @@ class DepartamentoController extends Controller
      */
     public function edit(Departamento $departamento)
     {
-        //
+        return response()->view('departamento.departamento_form', compact('departamento'));
     }
 
     /**
@@ -71,7 +75,14 @@ class DepartamentoController extends Controller
      */
     public function update(Request $request, Departamento $departamento)
     {
-        //
+        $validator =  Validator::make($request->all(),
+            ["nome" => ["required","unique:departamento,nome,$departamento->id"]],
+            ["required" => "Nome Obrigatorio" , "unique" => "nome deve ser unico"]);
+        if($validator->fails())  return  response()->redirectToRoute('departamento.edit',["departamento" => $departamento->id])->withErrors($validator);
+        $departamento->update([
+            "nome" => $request->nome
+        ]);
+        return response()->redirectToRoute('departamento.index')->with("message","Departamento Atualizado com Sucesso");
     }
 
     /**
@@ -82,6 +93,7 @@ class DepartamentoController extends Controller
      */
     public function destroy(Departamento $departamento)
     {
-        //
+        $departamento->delete();
+        return response()->redirectToRoute('departamento.index')->with(["message" => "departamento excluido com sucesso"]);
     }
 }
