@@ -10,6 +10,7 @@ Route::get(
     }
 );
 
+// Setor
 
 Route::get("/setor" , [SetorController::class,'index'])->name('setor.index');
 Route::get('/setor/edit/{setor}', [SetorController::class,'edit'])->name('setor.edit');
@@ -17,7 +18,9 @@ Route::get("/setor/create" , [SetorController::class,'create'])->name('setor.cre
 Route::post('/setor' , [SetorController::class,'store'])->name('setor.store');
 Route::put('/setor/{setor}' , [SetorController::class,'update'])->name('setor.update');
 Route::delete('setor/{setor}' , [SetorController::class,'destroy'])->name('setor.destroy');
+
 // Departamento
+
 Route::get('/departamento' , [DepartamentoController::class,'index'])->name('departamento.index');
 Route::get('/departamento/create', [DepartamentoController::class,'create'])->name('departamento.create');
 Route::post('/departamento', [DepartamentoController::class,'store'])->name("departamento.store");
