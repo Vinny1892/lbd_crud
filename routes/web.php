@@ -3,14 +3,21 @@
 use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetorController;
+use App\Http\Controllers\ProjetoController;
 
 Route::get(
     '/', function () {
         return view('welcome');
     }
 );
-
-
+// Projeto
+Route::get('/projeto' , [ProjetoController::class,'index'])->name('projeto.index');
+Route::get('/projeto/create', [ProjetoController::class,'create'])->name('projeto.create');
+Route::post('/projeto', [ProjetoController::class,'store'])->name("projeto.store");
+Route::get('/projeto/edit/{projeto}', [ProjetoController::class,'edit'])->name("projeto.edit");
+Route::put('/projeto/{projeto}', [ProjetoController::class,'update'])->name("projeto.update");
+Route::delete('projeto/{projeto}',[ProjetoController::class,'destroy'])->name("projeto.destroy");
+// Setor
 Route::get("/setor" , [SetorController::class,'index'])->name('setor.index');
 Route::get('/setor/edit/{setor}', [SetorController::class,'edit'])->name('setor.edit');
 Route::get("/setor/create" , [SetorController::class,'create'])->name('setor.create');

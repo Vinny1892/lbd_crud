@@ -9,7 +9,7 @@ services:
             - /var/www/html/vendor
             -  /var/www/html/node_modules
         ports:
-            - 8080:80
+            - 8081:80
         networks:
             network-feedbackevent:
                 ipv4_address: 172.70.0.8
