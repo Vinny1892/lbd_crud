@@ -18,11 +18,10 @@ class CreateFuncionarioTable extends Migration
             'funcionario',
             function (Blueprint $table) {
                 $table->id();
-                $table->string("name");
+                $table->string("nome");
                 $table->string("cpf");
                 $table->string("endereco");
                 $table->integer("id_setor");
-                $table->integer("id_departamento");
                 $table->timestamps();
             }
         );

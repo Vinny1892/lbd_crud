@@ -15,7 +15,7 @@ class Projeto extends Model
         "name",
         "data_inicio",
         "data_fim",
-        "setor_id"
+        "id_setor"
     ];
 
     public function setor() {

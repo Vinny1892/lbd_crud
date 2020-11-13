@@ -18,6 +18,7 @@ class CreateDepartamentoTable extends Migration
                 $table->id();
                 $table->string('nome');
                 $table->timestamps();
+            $table->integer("id_funcionario_gerente");
             }
         );
     }

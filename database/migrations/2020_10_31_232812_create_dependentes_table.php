@@ -17,7 +17,7 @@ class CreateDependentesTable extends Migration
             'dependente', function (Blueprint $table) {
                 $table->id();
                 $table->integer("id_funcionario");
-                $table->string("name");
+                $table->string("nome");
                 $table->date("data_nasc");
                 $table->timestamps();
             }
