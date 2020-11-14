@@ -25,22 +25,20 @@ class ProjetoController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "name" => "required",
+            "nome" => "required",
             "data_inicio" => "required",
-            "data_fim" => "required",
         ],
         [
             "required" => "O campo :attribute é obrigatório",
         ],
         [
-            "name" => "nome",
-            "data_inicio" => "data de início",
-            "data_fim" => "data de fim"
+            "nome" => "nome",
+            "data_inicio" => "data de início"
         ]);
         if($validator->fails()) { return response()->redirectToRoute('projeto.create')->withErrors($validator);}
         $setor = Setor::find($request->get('setor'));
         $setor->projeto()->create([
-            "name" => $request->nome,
+            "nome" => $request->nome,
             "data_inicio" => $request->data_inicio,
             "data_fim" => $request->data_fim
         ]);
@@ -58,8 +56,9 @@ class ProjetoController extends Controller
         $setor = Setor::find($request->setor);
         $projeto->setor()->associate($setor);
         $projeto->update([
-            "name" => $request->nome,
+            "nome" => $request->nome,
             "data_inicio" => $request->data_inicio,
+            "data_fim" => $request->data_fim
         ]);
         return response()->redirectToRoute('projeto.index');
     }

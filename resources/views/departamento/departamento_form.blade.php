@@ -27,6 +27,11 @@
         @csrf
         <input type="text" name="nome"  placeholder="Digite o nome do departamento"
                value="{{ $departamento ? $departamento->nome : old('nome') }}">
+        <select name="id_funcionario_gerente">
+         @foreach($funcionarios as $funcionario)
+             <option value="{{$funcionario->id}}">{{$funcionario->nome}}</option>
+         @endforeach
+        </select>
         <button type="submit" >Submit</button>
     </form>
     </body>

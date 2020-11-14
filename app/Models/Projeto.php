@@ -12,7 +12,7 @@ class Projeto extends Model
     protected $table = "projeto";
 
     protected $fillable = [
-        "name",
+        "nome",
         "data_inicio",
         "data_fim",
         "id_setor"

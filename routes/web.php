@@ -4,6 +4,7 @@ use App\Http\Controllers\DepartamentoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\ProjetoController;
+use App\Http\Controllers\FuncionarioController;
 
 Route::get(
     '/', function () {
@@ -31,5 +32,11 @@ Route::post('/departamento', [DepartamentoController::class,'store'])->name("dep
 Route::get('/departamento/edit/{departamento}', [DepartamentoController::class,'edit'])->name("departamento.edit");
 Route::put('/departamento/{departamento}', [DepartamentoController::class,'update'])->name("departamento.update");
 Route::delete('departamento/{departamento}',[DepartamentoController::class,'destroy'])->name("departamento.destroy");
-
+// Funcionario
+Route::get('/funcionario' , [FuncionarioController::class,'index'])->name('funcionario.index');
+Route::get('/funcionario/create', [FuncionarioController::class,'create'])->name('funcionario.create');
+Route::post('/funcionario', [FuncionarioController::class,'store'])->name("funcionario.store");
+Route::get('/funcionario/edit/{funcionario}', [FuncionarioController::class,'edit'])->name("funcionario.edit");
+Route::put('/funcionario/{funcionario}', [FuncionarioController::class,'update'])->name("funcionario.update");
+Route::delete('funcionario/{funcionario}',[FuncionarioController::class,'destroy'])->name("funcionario.destroy");
 

@@ -21,7 +21,7 @@
             <form method="POST" action="{{ route('projeto.store') }}">
                 @endif
                 @csrf
-                <input type="text" name="nome"  placeholder="Digite o nome do projeto" value="{{ $projeto  ? $projeto->name : old('nome') }}">
+                <input type="text" name="nome"  placeholder="Digite o nome do projeto" value="{{ $projeto  ? $projeto->nome : old('nome') }}">
                 <input type="date" name="data_inicio"  placeholder="Digite a data de início" value="{{ $projeto  ? $projeto->data_inicio : old('data_inicio') }}">
                 <input type="date" name="data_fim"  placeholder="Digite a data de fim" value="{{ $projeto  ? $projeto->data_fim : old('data_fim') }}">
                 <select name="setor">

@@ -26,6 +26,7 @@
     <thead>
        <tr>
            <th>Nome</th>
+           <th>Gerente</th>
            <th>Açoes</th>
        </tr>
     </thead>
@@ -33,13 +34,15 @@
     @foreach($departamentos as $departamento)
         <tr>
             <td>{{ $departamento->nome }}</td>
+            <td>{{ $departamento->id_funcionario_gerente }}</td>
             <td>
                 <form method="POST" action="{{ route('departamento.destroy',["departamento" => $departamento->id]) }}">
                @csrf @method("DELETE")
                 <button>Apagar</button>
                 </form>
                 <form action="{{ route('departamento.edit' , ["departamento" => $departamento->id]) }}">
-                <button>Editar</button></td>
+                <button>Editar</button>
+            </td>
             </form>
 
             <td>

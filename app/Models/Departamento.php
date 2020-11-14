@@ -12,10 +12,14 @@ class Departamento extends Model
     protected  $table = 'departamento';
 
     protected $fillable = [
-        "nome"
+        "nome",
+        "id_funcionario_gerente"
     ];
 
     public function setor(){
         return $this->hasMany(Setor::class,'id_departamento','id');
+    }
+    public function funcionario(){
+        return $this->hasOne(Funcionario::class, 'id_funcionario_gerente');
     }
 }

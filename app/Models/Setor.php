@@ -28,4 +28,8 @@ class Setor extends Model
     public function projeto(){
         return $this->hasMany(Projeto::class,'id_setor','id');
     }
+
+    public function funcionario(){
+        return $this->hasMany(Funcionario::class, 'id_setor', 'id');
+    }
 }

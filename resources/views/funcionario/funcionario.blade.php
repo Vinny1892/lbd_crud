@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Departamento</title>
+    <title>Funcionário</title>
 </head>
 <body>
 <style type="text/css">
@@ -16,29 +16,30 @@
         border: 1px solid black;
     }
 </style>
-<h1>Projeto</h1>
+<h1>Funcionário</h1>
 <table>
     <thead>
     <tr>
-        <th>Projeto</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Endereço</th>
         <th>Setor</th>
-        <th>Data de Início</th>
-        <th>Data de Fim</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($projetos as $projeto)
+    @foreach($funcionarios as $funcionario)
         <tr>
-            <td>{{ $projeto->nome }}</td>
-            <td>{{ $projeto->setor->nome }}</td>
-            <td>{{ $projeto->data_inicio }}</td>
-            <td>{{ $projeto->data_fim }}</td>
-            <td><form action="{{ route('projeto.destroy' , ["projeto" => $projeto->id])  }}" method="POST">
+            <td>{{ $funcionario->nome }}</td>
+            <td>{{ $funcionario->cpf }}</td>
+            <td>{{ $funcionario->endereco }}</td>
+            <td>{{ $funcionario->setor->nome }}</td>
+            <td><form action="{{ route('funcionario.destroy' , ["funcionario" => $funcionario->id])  }}" method="POST">
                     @csrf @method('DELETE')<button>Apagar</button></form>
-                <a href="{{ route('projeto.edit',[ "projeto" => $projeto->id]) }}" >Editar</a></td>
+                <button href="{{ route('funcionario.edit',[ "funcionario" => $funcionario->id]) }}" >Editar</button></td>
         </tr>
     @endforeach
     </tbody>
 </table>
 </body>
 </html>
+<?php
