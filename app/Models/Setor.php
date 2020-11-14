@@ -24,4 +24,12 @@ class Setor extends Model
     public function departamento(){
         return $this->belongsTo(Departamento::class,'id_departamento','id');
     }
+
+    public function projeto(){
+        return $this->hasMany(Projeto::class,'id_setor','id');
+    }
+
+    public function funcionario(){
+        return $this->hasMany(Funcionario::class, 'id_setor', 'id');
+    }
 }

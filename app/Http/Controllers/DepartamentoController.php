@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
+use App\Models\Funcionario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +28,8 @@ class DepartamentoController extends Controller
     public function create()
     {
         $departamento = null;
-        return response()->view('departamento.departamento_form',compact('departamento'));
+        $funcionarios = Funcionario::all();
+        return response()->view('departamento.departamento_form',compact('funcionarios','departamento'));
     }
 
     /**
@@ -53,7 +55,8 @@ class DepartamentoController extends Controller
      */
     public function edit(Departamento $departamento)
     {
-        return response()->view('departamento.departamento_form', compact('departamento'));
+        $funcionarios = Funcionario::all();
+        return response()->view('departamento.departamento_form', compact('departamento', 'funcionarios'));
     }
 
     /**
