@@ -46,16 +46,6 @@ class DepartamentoController extends Controller
         return response()->redirectToRoute('departamento.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Departamento  $departamento
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Departamento $departamento)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
