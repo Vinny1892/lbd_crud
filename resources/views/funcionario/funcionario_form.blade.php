@@ -32,6 +32,7 @@
                 <input type="text" name="endereco"  placeholder="Digite o endereco do funcionário"
                        value="{{ $funcionario ? $funcionario->endereco : old('endereco') }}">
                 <select name="id_setor">
+                    <option value="" ></option>
                     @foreach($setores as $setor)
                         <option value="{{$setor->id}}">{{$setor->nome}}</option>
                     @endforeach
@@ -40,3 +41,4 @@
             </form>
 </body>
 </html>
+

@@ -32,7 +32,11 @@
             <td>{{ $funcionario->nome }}</td>
             <td>{{ $funcionario->cpf }}</td>
             <td>{{ $funcionario->endereco }}</td>
+            @if($funcionario->setor()->exists())
             <td>{{ $funcionario->setor->nome }}</td>
+            @else
+                <td></td>
+            @endif
             <td><form action="{{ route('funcionario.destroy' , ["funcionario" => $funcionario->id])  }}" method="POST">
                     @csrf @method('DELETE')<button>Apagar</button></form>
                 <button href="{{ route('funcionario.edit',[ "funcionario" => $funcionario->id]) }}" >Editar</button></td>
