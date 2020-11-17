@@ -40,6 +40,11 @@ class SetorController extends Controller
 
     public function update(Setor $setor, Request $request)
     {
+
+        $validator =  Validator::make($request->all(),
+            [ "nome" => ["required","unique:setor,nome,$setor->id"] ],
+            ["required" => "Nome Obrigatorio" , "unique" => "nome deve ser unico"]);
+        if($validator->fails())  return  response()->redirectToRoute('setor.edit',["setor" => $setor->id])->withErrors($validator);
         $departamento = Departamento::find($request->departamento);
         $setor->departamento()->associate($departamento);
         $setor->update([

@@ -16,6 +16,17 @@
         border: 1px solid black;
     }
 </style>
+
+@if (session('message'))
+        <div>
+            {{ session('message') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div> <p>{{ $error }}</p> </div>
+    @endforeach
+    @endif
 <h1>Setor</h1>
 <table>
     <thead>

@@ -16,6 +16,16 @@
         border: 1px solid black;
     }
 </style>
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div> <p>{{ $error }}</p> </div>
+    @endforeach
+@endif
 <h1>Funcionário</h1>
 <table>
     <thead>
@@ -38,8 +48,12 @@
                 <td></td>
             @endif
             <td><form action="{{ route('funcionario.destroy' , ["funcionario" => $funcionario->id])  }}" method="POST">
-                    @csrf @method('DELETE')<button>Apagar</button></form>
-                <button href="{{ route('funcionario.edit',[ "funcionario" => $funcionario->id]) }}" >Editar</button></td>
+                    @csrf @method('DELETE')<button>Apagar</button>
+                </form>
+                <form action="{{ route('funcionario.edit' , ["funcionario" => $funcionario->id])  }}" method="GET">
+                    <button type="submit" >Editar</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

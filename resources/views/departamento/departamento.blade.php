@@ -13,6 +13,11 @@
         {{ session('message') }}
     </div>
 @endif
+@if ($errors->any())
+    @foreach ($errors->all() as $error)
+        <div> <p>{{ $error }}</p> </div>
+    @endforeach
+@endif
 <style type="text/css">
     h1 {
         color:rebeccapurple;

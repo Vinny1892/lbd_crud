@@ -6,6 +6,7 @@ use App\Models\Funcionario;
 use App\Models\Setor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class FuncionarioController extends Controller
 {
@@ -25,18 +26,60 @@ class FuncionarioController extends Controller
 
     public function store(Request $request)
     {
-        $setor = Setor::find($request->id_setor);
-         $data = ["nome" => $request->nome, "cpf" => $request->cpf, "endereco" => $request->endereco];
+        $data = ["nome" => $request->nome, "cpf" => $request->cpf, "endereco" => $request->endereco ];
+        $validate = Validator::make($data , [
+            "nome" => ["required"],
+            "cpf" => ["required", "min:11" ,"max:11"],
+            "endereco" => ['required']
+        ]);
+        if($validate->fails()) return response()->redirectToRoute('funcionario.create')->withErrors($validate);
+         $setor = Setor::find($request->id_setor);
          try {
             if (isset($setor)) {
-              $var =   $setor->funcionario()->create($data);
+              $funcionario = $setor->funcionario()->create($data);
             } else {
-              $var =  Funcionario::create($data);
+              $funcionario =  Funcionario::create($data);
             }
-            return response()->RedirectToRoute('funcionario.index')->with(["message" => "Funcionario criado com sucesso" ]);
+            return response()->RedirectToRoute('funcionario.index')
+                        ->with(["message" => "Funcionario $funcionario->nome  criado com sucesso" ]);
         } catch (\Exception $e) {
-             Log::error(" Erro ao inserir funcionario , messagem: $e->getMessage()");
+             Log::error("Erro ao inserir funcionario , messagem: $e->getMessage()");
         }
+
+    }
+
+    public function edit(Funcionario $funcionario)
+    {
+        $setores = Setor::all();
+        return response()->view('funcionario.funcionario_form', compact('funcionario','setores'));
+    }
+
+    public function update(Funcionario $funcionario, Request $request)
+    {
+        $data = ["nome" => $request->nome, "cpf" => $request->cpf, "endereco" => $request->endereco ];
+        $validate = Validator::make($data , [
+            "nome" => ["required", ],
+            "cpf" => ["required", "unique:funcionario,cpf,$funcionario->id","min:11" ,"max:11"],
+        ]);
+        if($validate->fails()) return response()->redirectToRoute('funcionario.edit', ['funcionario' => $funcionario->id])->withErrors($validate);
+        if(isset($request->setor)) {
+            $setor = Setor::find($request->setor);
+            $funcionario->setor()->associate($setor);
+        }else{
+            $funcionario->setor()->disassociate();
+        }
+        $funcionario->update([
+            "nome" => $request->nome,
+            "endereco" => $request->endereco,
+            "cpf" => $request->cpf
+        ]);
+        return response()->redirectToRoute('funcionario.index')->with(["message" => "Funcionario $funcionario->nome atualizado com sucesso"]);
+    }
+
+    public function destroy(Funcionario $funcionario)
+    {
+        $funcionario->delete();
+        return response()->redirectToRoute('funcionario.index')->with(["message" => "Funcionario $funcionario->nome deletado com sucesso"]);
 
     }
 }

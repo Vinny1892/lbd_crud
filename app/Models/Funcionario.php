@@ -19,6 +19,8 @@ class Funcionario extends Model
     ];
 
     public function setor() {
-        return $this->belongsTo(Setor::class, "id_setor");
+        return $this->belongsTo(Setor::class, "id_setor",'id');
     }
+
+
 }
