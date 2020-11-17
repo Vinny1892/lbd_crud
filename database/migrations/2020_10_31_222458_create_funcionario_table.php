@@ -21,7 +21,7 @@ class CreateFuncionarioTable extends Migration
                 $table->string("nome");
                 $table->string("cpf");
                 $table->string("endereco");
-                $table->integer("id_setor");
+                $table->integer("id_setor")->nullable();
                 $table->timestamps();
             }
         );
