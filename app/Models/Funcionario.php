@@ -23,4 +23,16 @@ class Funcionario extends Model
     }
 
 
+    public function departamento(){
+        return $this->belongsTo(Departamento::class,'id_departamento' ,'id');
+    }
+    public function dependente(){
+        return $this->hasMany(Dependente::class,'id_dependente','id');
+    }
+
+    public function projeto(){
+        return $this->belongsToMany(Projeto::class,'projeto_funcionario' , 'id_funcionario','id_projeto');
+
+    }
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectTrable extends Migration
+class CreateTableLog extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateProjectTrable extends Migration
      */
     public function up()
     {
-        Schema::create('projeto', function (Blueprint $table) {
+        Schema::create('log', function (Blueprint $table) {
             $table->id();
-            $table->string("nome");
-            $table->date("data_inicio");
-            $table->date("data_fim")->nullable();
-            $table->integer("id_setor");
-            $table->timestamps();
+            $table->string('tabela');
+            $table->json('registro_antigo')->nullable();
+            $table->json('registro_novo')->nullable();
+            $table->string('operacao');
+            $table->datetime('data_alteracao');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateProjectTrable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_trable');
+        Schema::dropIfExists('log');
     }
 }

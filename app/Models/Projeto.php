@@ -21,4 +21,7 @@ class Projeto extends Model
     public function setor() {
         return $this->belongsTo(Setor::class, "id_setor", "id");
     }
+    public function  funcionario(){
+        return $this->belongsToMany(Funcionario::class,'projeto_funcionario' , 'id_projeto','id_funcionario');
+    }
 }
