@@ -72,6 +72,8 @@ class DepartamentoController extends Controller
             ["nome" => ["required","unique:departamento,nome,$departamento->id"]],
             ["required" => "Nome Obrigatorio" , "unique" => "nome deve ser unico"]);
         if($validator->fails())  return  response()->redirectToRoute('departamento.edit',["departamento" => $departamento->id])->withErrors($validator);
+        $funcionario = Funcionario::find($request->funcionario);
+        $funcionario->departamento()->associate($departamento);
         $departamento->update([
             "nome" => $request->nome
         ]);

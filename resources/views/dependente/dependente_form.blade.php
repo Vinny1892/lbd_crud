@@ -1,6 +1,7 @@
 @extends('layout.index')
 @section('content')
-@if (session('message'))
+@if($funcionarios->isNotEmpty())
+        @if (session('message'))
     <div class="alert alert-success">
         {{ session('message') }}
     </div>
@@ -18,25 +19,28 @@
     @endif
         @csrf
         <input type="text" name="nome"  placeholder="Digite o nome do funcionário"
-               value="{{ $funcionario ? $funcionario->nome : old('nome') }}">
+               value="{{ $dependente ? $dependente->nome : old('nome') }}">
         <input type="text" name="cpf"  placeholder="Digite o cpf do funcionário"
-               value="{{ $funcionario ? $funcionario->cpf : old('cpf') }}">
-        <input type="text" name="endereco"  placeholder="Digite o endereco do funcionário"
-               value="{{ $funcionario ? $funcionario->endereco : old('endereco') }}">
-        <select name="setor">
+               value="{{ $dependente ? $dependente->cpf : old('cpf') }}">
+        <input type="date" name="data_nascimento"  placeholder="Digite a data nascimento"
+               value="{{ $dependente ? $dependente->data_nasc : old('data_nascimento') }}" >
+        <select name="funcionario">
             <option value="" ></option>
-            @foreach($setores as $setor)
-                <option value="{{ $setor->id }}"
+            @foreach($funcionarios as $funcionario)
+                <option value="{{ $funcionario->id }}"
 
-                    @if(isset($funcionario) && $funcionario->setor()->exists())
-                    {{ $funcionario->setor->nome === $setor->nome ? 'selected' : ''  }}
+                @if(isset($dependente) && $dependente->funcionario()->exists())
+                    {{ $dependente->funcionario->nome === $funcionario->nome ? 'selected' : ''  }}
                     @endif
                 >
-                    {{$setor->nome}}
+                    {{$funcionario->nome}}
                 </option>
             @endforeach
         </select>
         <button type="submit" >Submit</button>
     </form>
+@else
+    <p> prescisa de funcionario  cadastrado  para cadastrar dependente </p>
+@endif
 @endsection
 

@@ -1,5 +1,6 @@
 @extends('layout.index')
 @section('content')
+@if($funcionarios->isNotEmpty())
 <style type="text/css">
     h1 {
         color:rebeccapurple;
@@ -24,8 +25,7 @@
     <tr>
         <th>Nome</th>
         <th>CPF</th>
-        <th>Endereço</th>
-        <th>Setor</th>
+        <th>Funcionario</th>
     </tr>
     </thead>
     <tbody>
@@ -33,16 +33,12 @@
         <tr>
             <td>{{ $dependente->nome }}</td>
             <td>{{ $dependente->cpf }}</td>
-            <td>{{ $deṕendente->endereco }}</td>
-//             @if($fu->setor()->exists())
-//             <td>{{ $funcionario->setor->nome }}</td>
-//             @else
-                <td></td>
-            @endif
-            <td><form action="{{ route('funcionario.destroy' , ["funcionario" => $funcionario->id])  }}" method="POST">
+            <td>{{ $dependente->funcionario->nome }}</td>
+            <td>
+                <form action="{{ route('dependente.destroy' , ["dependente" => $dependente->id])  }}" method="POST">
                     @csrf @method('DELETE')<button>Apagar</button>
                 </form>
-                <form action="{{ route('funcionario.edit' , ["funcionario" => $funcionario->id])  }}" method="GET">
+                <form action="{{ route('dependente.edit' , ["dependente" => $dependente->id])  }}" method="GET">
                     <button type="submit" >Editar</button>
                 </form>
             </td>
@@ -50,4 +46,7 @@
     @endforeach
     </tbody>
 </table>
+@else
+    <p> prescisa de funcionario  cadastrado  para cadastrar dependente </p>
+@endif
 @endsection
