@@ -17,7 +17,7 @@ class CreateProjectTrable extends Migration
             $table->id();
             $table->string("nome");
             $table->date("data_inicio");
-            $table->date("data_fim");
+            $table->date("data_fim")->nullable();
             $table->integer("id_setor");
             $table->timestamps();
         });

@@ -17,8 +17,10 @@ class CreateProjectFuncionarioTrable extends Migration
             $table->id();
             $table->integer("id_funcionario");
             $table->integer("id_projeto");
-            $table->foreign('id_funcionario')->references('id')->on('funcionario');
-            $table->foreign('id_projeto')->references('id')->on('projeto');
+            $table->foreign('id_funcionario')->references('id')
+                ->on('funcionario')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_projeto')->references('id')->on('projeto')
+            ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
