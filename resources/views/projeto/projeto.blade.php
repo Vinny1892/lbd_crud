@@ -16,6 +16,7 @@
         <th>Setor</th>
         <th>Data de Início</th>
         <th>Data de Fim</th>
+        <th>Funcionarios</th>
     </tr>
     </thead>
     <tbody>
@@ -24,10 +25,27 @@
             <td>{{ $projeto->nome }}</td>
             <td>{{ $projeto->setor->nome }}</td>
             <td>{{ $projeto->data_inicio }}</td>
-            <td>{{ $projeto->data_fim }}</td>
-            <td><form action="{{ route('projeto.destroy' , ["projeto" => $projeto->id])  }}" method="POST">
-                    @csrf @method('DELETE')<button>Apagar</button></form>
-                <a href="{{ route('projeto.edit',[ "projeto" => $projeto->id]) }}" >Editar</a></td>
+            <td>{{ $projeto->data_fim ?  $projeto->data_fim :'projeto sem final definido'}}</td>
+            <td>
+                @if(sizeof($projeto->funcionario) > 0)
+                <select>
+                    @foreach( $projeto->funcionario as $funcionario)
+                    <option>{{$funcionario->nome }}</option>
+                    @endforeach
+                </select>
+                @else
+                    <p>Nenhum funcionario alocado para este projeto</p>
+                @endif
+            </td>
+            <td>
+                <form action="{{ route('projeto.destroy' , ["projeto" => $projeto->id])  }}" method="POST">
+                    @csrf @method('DELETE')
+                    <button type="submit">Apagar</button>
+                </form>
+                <form method="GET" action="{{ route('projeto.edit',[ "projeto" => $projeto->id]) }}">
+                    <button type="submit">Editar</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

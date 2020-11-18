@@ -20,6 +20,6 @@ class Departamento extends Model
         return $this->hasMany(Setor::class,'id_departamento','id');
     }
     public function funcionario(){
-        return $this->hasOne(Funcionario::class, 'id_funcionario_gerente');
+        return $this->hasOne(Funcionario::class, 'id_funcionario_gerente','id');
     }
 }
