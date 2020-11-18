@@ -31,7 +31,11 @@
     @foreach($departamentos as $departamento)
         <tr>
             <td>{{ $departamento->nome }}</td>
-            <td>{{ $departamento->id_funcionario_gerente }}</td>
+            @if($departamento->funcionario()->exists())
+            <td>{{ $departamento->funcionario->nome }}</td>
+            @else
+            <td> Departamento sem gerente</td>
+            @endif
             <td>
                 <form method="POST" action="{{ route('departamento.destroy',["departamento" => $departamento->id]) }}">
                @csrf @method("DELETE")

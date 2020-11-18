@@ -10,7 +10,9 @@ class Dependente extends Model
     use HasFactory;
     protected  $table = "dependente";
     protected $fillable = [
-        "nome"
+        "nome",
+        "data_nascimento",
+        "cpf"
     ];
  public function funcionario(){
      return $this->belongsTo(Funcionario::class,'id_funcionario' , 'id');

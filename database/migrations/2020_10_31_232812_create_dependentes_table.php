@@ -18,7 +18,8 @@ class CreateDependentesTable extends Migration
                 $table->id();
                 $table->integer("id_funcionario");
                 $table->string("nome");
-                $table->date("data_nasc");
+                $table->date("data_nascimento");
+                $table->string("cpf")->nullable();
                 $table->timestamps();
             }
         );

@@ -22,17 +22,15 @@ class Funcionario extends Model
         return $this->belongsTo(Setor::class, "id_setor",'id');
     }
 
-
     public function departamento(){
-        return $this->belongsTo(Departamento::class,'id_departamento' ,'id');
+        return $this->belongsTo(Departamento::class,'id_funcionario_gerente' ,'id');
     }
     public function dependente(){
-        return $this->hasMany(Dependente::class,'id_dependente','id');
+        return $this->hasMany(Dependente::class,'id_funcionario','id');
     }
 
     public function projeto(){
         return $this->belongsToMany(Projeto::class,'projeto_funcionario' , 'id_funcionario','id_projeto');
-
     }
 
 }

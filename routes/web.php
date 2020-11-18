@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetorController;
 use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\DependenteController;
 
 Route::get(
     '/', function () {
@@ -39,4 +40,15 @@ Route::post('/funcionario', [FuncionarioController::class,'store'])->name("funci
 Route::get('/funcionario/edit/{funcionario}', [FuncionarioController::class,'edit'])->name("funcionario.edit");
 Route::put('/funcionario/{funcionario}', [FuncionarioController::class,'update'])->name("funcionario.update");
 Route::delete('funcionario/{funcionario}',[FuncionarioController::class,'destroy'])->name("funcionario.destroy");
+
+//dependente
+Route::get('/dependente' , [DependenteController::class , 'index'])->name('dependente.index');
+Route::post('/dependente' , [DependenteController::class , 'store'])->name('dependente.store');
+Route::get('/dependente/create/' , [DependenteController::class , 'create'])->name('dependente.create');
+Route::get('/dependente/edit/{dependente}' , [DependenteController::class , 'edit'])->name('dependente.edit');
+Route::put('/dependente/{dependente}' , [DependenteController::class , 'update'])->name('dependente.update');
+Route::delete('/dependente/{dependente}' , [DependenteController::class , 'destroy'])->name('dependente.destroy');
+
+
+
 
