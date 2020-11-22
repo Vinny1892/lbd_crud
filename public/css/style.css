@@ -1,0 +1,33 @@
+
+.titulo {
+    font-size: 50px;
+    color: rgb(155, 181, 191);
+
+}
+.container-titulo {
+    width: 100%;
+    margin-top: 50px;
+}
+.btn-adicionar {
+    float: right;
+    margin-top: 20px;
+}
+.spacebutton {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.seila{
+    background-color: whitesmoke;
+    margin: auto;
+    margin-top:50px ;
+    padding: 45px ;
+    width:75%
+}
+.painel-background{
+    background-color: #2c3538;
+    margin: auto;
+    margin-top:50px ;
+    padding: 45px ;
+    width:75%
+}

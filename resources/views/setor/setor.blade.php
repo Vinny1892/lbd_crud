@@ -1,14 +1,5 @@
 @extends('layout.index')
 @section('content')
-<style type="text/css">
-    h1 {
-        color:rebeccapurple;
-    }
-    table,thead,tbody, tr ,td{
-        border: 1px solid black;
-    }
-</style>
-
 @if (session('message'))
         <div>
             {{ session('message') }}
@@ -16,15 +7,25 @@
     @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-            <div> <p>{{ $error }}</p> </div>
-    @endforeach
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p >{{ $error }}</p>
+            </div>
+        @endforeach
     @endif
-<h1>Setor</h1>
-<table>
+<link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}" >
+<title>Setor</title>
+
+<div class="container-titulo">
+    <span class="titulo" >Setor</span>
+    <a   class="btn btn-secondary btn-adicionar" href="{{ route('setor.create') }}"><i class="fas fa-plus"></i></a>
+</div>
+<table class="table table-dark">
     <thead>
     <tr>
-        <th>Setor</th>
-        <th>Departamento</th>
+        <th scope="col">Setor</th>
+        <th scope="col">Departamento</th>
+        <th scope="col">Ações</th>
     </tr>
     </thead>
     <tbody>
@@ -32,9 +33,20 @@
         <tr>
             <td>{{ $setor->nome }}</td>
             <td>{{ $setor->departamento->nome }}</td>
-            <td><form action="{{ route('setor.destroy' , ["setor" => $setor->id])  }}" method="POST">
-                     @csrf @method('DELETE')<button>Apagar</button></form>
-                <a href="{{ route('setor.edit',[ "setor" => $setor->id]) }}" >Editar</a></td>
+            <td style="padding-left: 0px">
+                <div class="row" style="margin:0px;">
+                    <div  class="col-sm-2 spacebutton">
+                        <form action="{{ route('setor.destroy' , ["setor" => $setor->id])  }}" method="POST">
+                            @csrf @method('DELETE') <button class="btn" ><i style="color:red" class="fas fa-trash"></i></button>
+                        </form>
+                    </div>
+                    <div class="col-sm-2 spacebutton">
+                        <button class="btn" ><a href="{{ route('setor.edit' , ["setor" => $setor->id])  }}" >
+                                <i style="color:yellow"class="far fa-edit"></i></a>
+                        </button>
+                    </div>
+                </div>
+            </td>
         </tr>
     @endforeach
     </tbody>

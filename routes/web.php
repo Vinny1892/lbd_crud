@@ -9,7 +9,8 @@ use App\Http\Controllers\DependenteController;
 
 Route::get(
     '/', function () {
-        return view('welcome');
+        $title = "Painel";
+        return view('index',compact('title'));
     }
 );
 // Projeto
