@@ -2,12 +2,18 @@
 @section('content')
 @if($setores->isNotEmpty())
     <title>Projeto</title>
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div> <p>{{ $error }}</p> </div>
-    @endforeach
-@endif
-    <link rel="stylesheet" type="text/css" href="{{ asset("css/form.css") }}" >
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p >{{ $error }}</p>
+            </div>    @endforeach
+    @endif
     <title>Projeto</title>
 
     @if(isset($projeto))
@@ -63,6 +69,6 @@
 </body>
 </html>
 @else
-  <div class="alert alert-info"><p>É obrigatoria a criação de um setor antes de criar um projeto</p></div>
+                <div class="alert alert-info"><p>É obrigatoria a criação de um <a class="alert-link" href="{{route('setor.create')}}" >setor</a> antes de criar um projeto</p></div>
 @endif
 @endsection

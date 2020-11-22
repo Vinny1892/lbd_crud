@@ -38,6 +38,6 @@
 </body>
 </html>
 @else
-    <div class="alert alert-info"><p>É obrigatoria a criação de um departamento antes de criar um setor</p></div>
+                    <div class="alert alert-info"><p>É obrigatoria a criação de um <a class="alert-link" href="{{ route('departamento.create') }}" >departamento</a> antes de criar um setor</p></div>
 @endif
 @endsection

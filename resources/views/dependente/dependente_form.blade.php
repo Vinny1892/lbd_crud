@@ -62,7 +62,7 @@
      </div>
     </form>
 @else
-   <div class="alert alert-info"> <p> prescisa de funcionario  cadastrado  para cadastrar dependente </p></div>
+                <div class="alert alert-info"> <p> prescisa de <a class="alert-link" href="{{ route('funcionario.create') }}">funcionario</a>  um cadastrado  para cadastrar dependente </p></div>
 @endif
 @endsection
 
