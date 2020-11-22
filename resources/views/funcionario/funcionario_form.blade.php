@@ -12,7 +12,6 @@
             <p >{{ $error }}</p>
         </div>    @endforeach
 @endif
-<link rel="stylesheet" type="text/css" href="{{ asset("css/form.css") }}" >
 <title>Funcionario</title>
 
     @if(isset($funcionario))

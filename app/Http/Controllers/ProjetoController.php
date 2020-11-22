@@ -31,9 +31,9 @@ class ProjetoController extends Controller
         $validator = Validator::make($request->all(), [
             "nome" => ["required" , "unique:projeto,nome"],
             "data_inicio" => ["required","date"],
-            "data_fim" => ["date"],
+            "data_fim" => ["date","nullable"],
             "setor" => ["required"],
-            "funcionario" => ["required"]
+            "funcionarios" => ["required"]
             ],
             [
                 "required" => "O campo :attribute é obrigatório",
@@ -62,9 +62,9 @@ class ProjetoController extends Controller
     {
         $validate = Validator::make($request->all(),["nome" => ["required" , "unique:projeto,nome,id,$projeto->id"],
             "data_inicio" => ["required","date"],
-            "data_fim" => ["date"],
+            "data_fim" => ["date","nullable"],
             "setor" => ["required"],
-            "funcionario" => ["required"]]);
+            "funcionarios" => ["required"]]);
         if($validate->fails())  return response()->redirectToRoute('projeto.create')->withErrors($validate);
         $setor = Setor::find($request->setor);
         $funcionarios = Funcionario::find($request->funcionarios);

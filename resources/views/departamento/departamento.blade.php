@@ -15,7 +15,10 @@
         @endforeach
     @endif
 <title>Departamento</title>
-
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p  class="small">  Deletar o departamento irá deletar todos setores relacionados ao mesmo  </p>
+    </div>
 <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}" >
 <div class="container-titulo">
     <span class="titulo" >Departamento </span>
