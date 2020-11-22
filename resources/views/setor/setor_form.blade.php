@@ -38,6 +38,6 @@
 </body>
 </html>
 @else
-    <p>É obrigatoria a criação de um departamento antes de criar um setor</p>
+    <div class="alert alert-info"><p>É obrigatoria a criação de um departamento antes de criar um setor</p></div>
 @endif
 @endsection

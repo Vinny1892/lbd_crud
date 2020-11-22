@@ -56,12 +56,13 @@
                     @endforeach
                 </select>
                 </div>
-                <button type="submit" class="btn btn-secondary" >Cadastrar Projeto</button>
+                <button type="submit"  style="color: whitesmoke" class="btn btn-success" >Cadastrar Projeto</button>
+                <a class="btn btn-secondary" href="{{ route('projeto.index') }}">Voltar</a>
         </div>
     </form>
 </body>
 </html>
 @else
-    <p>É obrigatoria a criação de um setor antes de criar um projeto</p>
+  <div class="alert alert-info"><p>É obrigatoria a criação de um setor antes de criar um projeto</p></div>
 @endif
 @endsection
