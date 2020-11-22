@@ -62,7 +62,7 @@
      </div>
     </form>
 @else
-    <p> prescisa de funcionario  cadastrado  para cadastrar dependente </p>
+   <div class="alert alert-info"> <p> prescisa de funcionario  cadastrado  para cadastrar dependente </p></div>
 @endif
 @endsection
 

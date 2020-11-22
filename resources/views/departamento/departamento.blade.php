@@ -1,15 +1,19 @@
 @extends('layout.index')
 @section('content')
-@if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-@endif
-@if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div> <p>{{ $error }}</p> </div>
-    @endforeach
-@endif
+    @if (session('message'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p > {{ session('message') }} </p>
+        </div>
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p > {{ $error }} </p>
+            </div>
+        @endforeach
+    @endif
 <title>Departamento</title>
 
 <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}" >
