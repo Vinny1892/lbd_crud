@@ -2,8 +2,9 @@
 @section('content')
 
 @if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <p > {{ session('message') }} </p>
     </div>
 @endif
 @if ($errors->any())

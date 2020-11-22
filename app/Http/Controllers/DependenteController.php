@@ -16,9 +16,10 @@ class DependenteController extends Controller
      */
     public function index()
     {
+        $title = "Dependentes";
         $funcionarios = Funcionario::all();
         $dependentes = Dependente::all();
-        return response()->view('dependente.dependente', compact('dependentes','funcionarios'));
+        return response()->view('dependente.dependente', compact('dependentes','funcionarios','title'));
     }
 
     /**
@@ -28,9 +29,10 @@ class DependenteController extends Controller
      */
     public function create()
     {
+        $title = "Criar Novo Funcionario";
         $dependente = null;
         $funcionarios = Funcionario::all();
-        return response()->view('dependente.dependente_form', compact('funcionarios','dependente'));
+        return response()->view('dependente.dependente_form', compact('funcionarios','dependente' ,'title'));
     }
 
     /**
@@ -41,7 +43,13 @@ class DependenteController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = Validator::make($request->all(),["nome" => ["required"] ,"data_nascimento" => ["required"] ]);
+        $validate = Validator::make($request->all(),
+            ["nome" => ["required"] ,
+                "data_nascimento" => ["required" , "date"] ,
+                "cpf" =>["required","min:11" ,"max:11","unique:dependente,cpf"],
+                "funcionario" => ["required"]
+            ]
+        );
         if($validate->fails())  return response()->redirectToRoute('dependente.create')->withErrors($validate);
         $funcionario = Funcionario::find($request->funcionario);
        $dependente =  $funcionario->dependente()->create(
@@ -63,8 +71,9 @@ class DependenteController extends Controller
      */
     public function edit(Dependente $dependente)
     {
+        $title = "Editar $dependente->nome";
         $funcionarios = Funcionario::all();
-        return response()->view('dependente.dependente_form',compact('dependente','funcionarios'));
+        return response()->view('dependente.dependente_form',compact('dependente','funcionarios','title'));
     }
 
     /**
@@ -76,6 +85,11 @@ class DependenteController extends Controller
      */
     public function update(Request $request, Dependente $dependente)
     {
+        Validator::make($request->all(),[
+            "nome" => ["required"],
+            "cpf" => ["max:11" ,"min:11" ,"unique:dependente,cpf,id,$dependente->id"],
+            "data_nascimento" => ["date","required"]
+        ]);
         $funcionario = Funcionario::find($request->funcionario);
         $dependente->funcionario()->associate($funcionario);
         $dependente->update([

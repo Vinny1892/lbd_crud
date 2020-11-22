@@ -14,7 +14,7 @@
 </head>
 <body>
 <div  id="app" >
-<hello title="{{ $title}}" ></hello>
+<navbar title="{{ $title}}" ></navbar>
 </div>
 <div class="container">
     @yield('content')

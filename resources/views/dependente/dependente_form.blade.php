@@ -26,7 +26,7 @@
          <div class="seila" >
          <div class="form-group"  >
              <label style="">Nome</label>
-            <input type="text" name="nome" class="form-control"  required placeholder="Digite o nome do funcionário"
+            <input type="text" name="nome"  required class="form-control"  required placeholder="Digite o nome do funcionário"
                    value="{{ $dependente ? $dependente->nome : old('nome') }}" >
          </div>
         <div class="form-group" >
@@ -57,7 +57,7 @@
         </div>
         <div class="form-group">
             <button type="submit"  style="color: whitesmoke" class="btn btn-success" >Cadastrar</button>
-            <a class="btn btn-secondary"  style="color: whitesmoke" href="{{ route('dependete.index') }}" >Voltar</a>
+            <a class="btn btn-secondary"  style="color: whitesmoke" href="{{ route('dependente.index') }}" >Voltar</a>
         </div>
      </div>
     </form>
