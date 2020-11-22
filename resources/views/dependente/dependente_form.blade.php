@@ -10,7 +10,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset("css/form.css") }}" >
 @if ($errors->any())
     @foreach ($errors->all() as $error)
-        <div class="alert alert-danger"> <p>{{ $error }}</p> </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p >{{ $error }}</p>
+        </div>
     @endforeach
 @endif
     @if(isset($dependente))
@@ -53,7 +56,8 @@
             </select>
         </div>
         <div class="form-group">
-        <button type="submit" value="Cadastrar"  class="btn btn-info">Submit</button>
+            <button type="submit"  style="color: whitesmoke" class="btn btn-success" >Cadastrar</button>
+            <a class="btn btn-secondary"  style="color: whitesmoke" href="{{ route('dependete.index') }}" >Voltar</a>
         </div>
      </div>
     </form>

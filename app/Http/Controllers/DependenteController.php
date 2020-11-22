@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dependente;
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DependenteController extends Controller
 {
@@ -40,6 +41,8 @@ class DependenteController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = Validator::make($request->all(),["nome" => ["required"] ,"data_nascimento" => ["required"] ]);
+        if($validate->fails())  return response()->redirectToRoute('dependente.create')->withErrors($validate);
         $funcionario = Funcionario::find($request->funcionario);
        $dependente =  $funcionario->dependente()->create(
             ["nome" => $request->nome,

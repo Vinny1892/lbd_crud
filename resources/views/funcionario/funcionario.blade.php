@@ -11,13 +11,13 @@
         <div> <p>{{ $error }}</p> </div>
     @endforeach
 @endif
-<link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}" >
 <title>Funcionario</title>
 
 <div class="container-titulo">
     <span class="titulo" >Funcionario </span>
     <a   class="btn btn-secondary btn-adicionar" href="{{ route('funcionario.create') }}"><i class="fas fa-plus"></i></a>
 </div>
+
 <table class="table table-dark">
     <thead>
     <tr>

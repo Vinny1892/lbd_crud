@@ -3,10 +3,12 @@
 @if(sizeof($departamentos) > 0)
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-            <div> <p>{{ $error }}</p> </div>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p >{{ $error }}</p>
+            </div>
         @endforeach
     @endif
-    <link rel="stylesheet" type="text/css" href="{{ asset("css/form.css") }}" >
     <title>Setor</title>
 
     @if(isset($setor))
@@ -29,7 +31,8 @@
            @endforeach
        </select>
        </div>
-       <button type="submit" class="btn btn-secondary" >Cadastrar</button>
+       <button type="submit"  style="color: whitesmoke" class="btn btn-success" >Cadastrar</button>
+       <a class="btn btn-secondary"  style="color: whitesmoke" href="{{ route('setor.index') }}" >Voltar</a>
    </div>
 </form>
 </body>

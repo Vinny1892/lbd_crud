@@ -7,11 +7,13 @@
     @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-            <div> <p>{{ $error }}</p> </div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p >{{ $error }}</p>
+        </div>
         @endforeach
     @endif
     <title>Departamento</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset("css/form.css") }}" >
     @if(isset($departamento))
             <form method="POST" action="{{ route('departamento.update', ["departamento" => $departamento->id]) }}" >
              @method("PUT")
@@ -35,8 +37,8 @@
                  </select>
              </div>
 
-             <button type="submit" class="btn btn-info">Cadastrar</button>
-             <a  href="{{ route('departamento.index')  }}" class="btn btn-warning">Voltar </a>
+             <button type="submit" style="color:whitesmoke" class="btn btn-success">Cadastrar</button>
+             <a  href="{{ route('departamento.index')  }}" class="btn btn-secondary">Voltar </a>
          </div>
     </form>
 @endsection

@@ -10,6 +10,8 @@ services:
             -  /var/www/html/node_modules
         ports:
             - 8081:80
+            - 3000:3000
+            - 3001:3001
         networks:
             network-feedbackevent:
                 ipv4_address: 172.70.0.8
@@ -21,7 +23,6 @@ services:
             POSTGRES_DB: "app"
             POSTGRES_USER: "postgres"
             POSTGRES_PASSWORD: "postgres"
-
         networks:
             network-feedbackevent:
                 ipv4_address: 172.70.0.15

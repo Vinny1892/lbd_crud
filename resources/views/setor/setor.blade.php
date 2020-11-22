@@ -7,14 +7,17 @@
     @endif
     @if ($errors->any())
         @foreach ($errors->all() as $error)
-            <div> <p>{{ $error }}</p> </div>
-    @endforeach
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p >{{ $error }}</p>
+            </div>
+        @endforeach
     @endif
 <link rel="stylesheet" type="text/css" href="{{ asset("css/app.css") }}" >
 <title>Setor</title>
 
 <div class="container-titulo">
-    <span class="titulo" >Departamento </span>
+    <span class="titulo" >Setor</span>
     <a   class="btn btn-secondary btn-adicionar" href="{{ route('setor.create') }}"><i class="fas fa-plus"></i></a>
 </div>
 <table class="table table-dark">
