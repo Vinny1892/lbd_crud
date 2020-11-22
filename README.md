@@ -5,13 +5,13 @@
 ## Metodo 1: Usando Docker
     -  git clone https://github.com/Vinny1892/lbd_crud.git 
     -  cd lbd_crud
-    -  mv .env.example .env
+    -  cp .env.example .env
     -  docker-compose up
     -  abrir  no navegador localhost:8080/
 ## Metodo 2: Sem Docker
     -  git clone https://github.com/Vinny1892/lbd_crud.git 
     -  cd lbd_crud
-    -  mv .env.example .env
+    -  cp .env.example .env
     -  composer install
     -  php  artisan serve --port 80 
     -  abrir no navegador no navegador localhost/
